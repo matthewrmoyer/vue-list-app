@@ -26,6 +26,7 @@ module.exports = {
       "anonymous": "never",
       "named": "never",
       "asyncArrow": "always"
-    }],  
+    }],
+    // "indent": ["error", 4]  
   }
 }
