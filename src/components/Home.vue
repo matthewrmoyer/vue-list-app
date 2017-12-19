@@ -1,18 +1,23 @@
 <template>
   <div class="hello">
-    <md-card>
-      <md-card-header></md-card-header>
-      <md-card-content>
-        <h2>{{ title }}</h2>
-        <p class="flow-text">There are lots of interesting things you can do here! One thing to explore the 
-          <router-link to="/risks">Risk Types page.</router-link> 
-          There, you can see all of the risk types that users have added, as well as click a risk type to see the fields associated with that risk.</p>
-        <p class="flow-text">You can also naviagate to the 
-        <router-link to="/addRisk">Add Risk</router-link> 
-        page, where you can create a new risk type. For example, if you have a new client inquiring about Cyber Liability Coverage, you can create a form containing all of the necessary fields required to add this risk type.</p>
-        <p class="flow-text">If you get lost, you can always click the BriteCore logo above to bring you home.</p>
-      </md-card-content>
-    </md-card>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+    <ul>
+      <li>asdf</li>
+      <li>asdf</li>
+      <li>asdf</li>
+      <li>asdf</li>      
+    </ul>
+    <a class="waves-effect waves-light btn">button</a>
+
   </div>
 </template>
 
@@ -33,7 +38,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 h1, h2 {
   font-weight: normal;
 }
@@ -46,6 +51,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  // color: #42b983;
 }
 </style>

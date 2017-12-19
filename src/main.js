@@ -3,14 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.css'
 import Vuex from 'vuex'
 import { store } from './store/store'
 
 Vue.config.productionTip = false
-
-Vue.use(VueMaterial)
 Vue.use(Vuex)
 
 /* eslint-disable no-new */
