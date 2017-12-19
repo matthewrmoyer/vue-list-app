@@ -28,5 +28,9 @@ module.exports = {
       "asyncArrow": "always"
     }],
     // "indent": ["error", 4]  
+  },
+  "globals": {
+    "$": true,
+    "jQuery": true
   }
 }
