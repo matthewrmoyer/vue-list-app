@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import allBoards from './modules/allBoards/store'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
@@ -7,6 +8,6 @@ export const store = new Vuex.Store({
     data: 'adf'
   },
   modules: {
-
+    allBoards
   }
 })
