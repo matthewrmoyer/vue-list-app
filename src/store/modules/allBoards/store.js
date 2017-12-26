@@ -5,7 +5,11 @@ import * as mutations from './mutations'
 const state = {
   boards: [
     'board1',
-    'board2'
+    'board2',
+    'board3',
+    'board4',
+    'board5',
+    'board6'
   ]
 }
 
