@@ -8,11 +8,13 @@
                     <li><router-link to="/">Home</router-link></li>
                     <li><router-link to="/allboards">All Your Boards</router-link></li>                              
                     <li><router-link to="/navbar">Navbar</router-link></li>         
+                    <li><router-link to="/singleBoard">SingleBoard</router-link></li>         
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><router-link to="/">Home</router-link></li>     
                     <li><router-link to="/allboards">All Your Boards</router-link></li>                         
-                    <li><router-link to="/navbar">Navbar</router-link></li>     
+                    <li><router-link to="/navbar">Navbar</router-link></li> 
+                    <li><router-link to="/singleBoard">SingleBoard</router-link></li>                                 
                 </ul>
             </div>
         </nav>
