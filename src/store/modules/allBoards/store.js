@@ -4,12 +4,12 @@ import * as mutations from './mutations'
 
 const state = {
   boards: [
-    'board1',
-    'board2',
-    'board3',
-    'board4',
-    'board5',
-    'board6'
+    {name: 'board1', id: 1},
+    {name: 'board2', id: 2},
+    {name: 'board3', id: 3},
+    {name: 'board4', id: 4},
+    {name: 'board5', id: 5},
+    {name: 'board6', id: 6}
   ]
 }
 

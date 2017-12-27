@@ -10,10 +10,10 @@
           > 
           <li 
             v-for="(board, index) in boards" 
-            :key="board"
+            :key="board.id"
             :data-index=index
             >
-            {{ board }}
+            <router-link :to="`/singleBoard/${board.id}`">{{ board.name }}</router-link>                    
           </li>
         </transition-group>
       </ul>

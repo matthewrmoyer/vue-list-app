@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ title }}
+        {{ title }} {{ id }}
     </div>
 </template>
 
@@ -8,8 +8,11 @@
     export default {
       data() {
         return {
-          title: 'SingleBoard'
+          title: 'SingleBoard',
+          id: this.$route.params.id
         }
+      },
+      computed: {
       }
     }
 </script>

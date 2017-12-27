@@ -25,7 +25,7 @@ export default new Router({
       component: AllBoards
     },
     {
-      path: '/singleBoard',
+      path: '/singleBoard/:id',
       name: 'SingleBoard',
       component: SingleBoard
     }
