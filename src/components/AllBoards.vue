@@ -22,7 +22,8 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
+    
     export default {
       data() {
         return {
@@ -36,6 +37,9 @@
         ])
       },
       methods: {
+        ...mapActions('allBoards', [
+          'getBoards'
+        ]),
         beforeEnter(el) {
           console.log('beforeEnter')
           el.style.opacity = 0
@@ -49,6 +53,9 @@
             console.log('settimeout')
           }, delay)
         }
+      },
+      mounted() {
+        this.getBoards()
       }
     }
 </script>

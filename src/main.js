@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import { store } from './store/store'
+import VueResource from 'vue-resource'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
+Vue.use(VueResource)
 
 /* eslint-disable no-new */
 new Vue({
