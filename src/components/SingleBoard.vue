@@ -1,20 +1,20 @@
 <template>
     <div class="component-container">
         <div>
-          <h3>{{ board.name }} by {{ board.creator }}</h3>
+          <h3>{{ board.board.name }} by {{ board.creator.name }}</h3>
           <ul class = "shared-user-list">
             <h5 class = "shared-user">Shared with</h5>
             <li 
             v-for="(user, index) in board.users" 
             :key="user.id"
             >
-            <h5 class = "shared-user">{{ user.name }}</h5>
+            <h5 class = "shared-user">{{ user[0].name }}</h5>
             <h5 class = "shared-user shared-user-comma" v-if="index!==board.users.length-1 &&board.users.length > 2">, </h5>
             <h5 class = "shared-user shared-user-comma" v-if="index===board.users.length-2"> and </h5>            
           </li>
           </ul>
           <ul class="fields">
-              <li v-for="(item, index) in board.items" :key="item.id">
+              <li v-for="(item, index) in board.content" :key="item.id">
                 <div class="item-container">
                   <div class="row item">
                       <label :for="item.id" class="active left">Item {{ index + 1 }}</label>

@@ -41,16 +41,12 @@
           'getBoards'
         ]),
         beforeEnter(el) {
-          console.log('beforeEnter')
           el.style.opacity = 0
         },
         enter(el, done) {
-          console.log('enter')
-          let delay = el.dataset.index * 350
-          console.log(delay)
+          let delay = el.dataset.index * 150
           setTimeout(function() {
             $(el).animate({ opacity: 1 }, 300, done)
-            console.log('settimeout')
           }, delay)
         }
       },
