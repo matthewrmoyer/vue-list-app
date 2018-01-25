@@ -5,6 +5,7 @@
           <ul class = "shared-user-list">
             <h5 class = "shared-user">Shared with</h5>
             <li 
+            v-if="board.users"
             v-for="(user, index) in board.users" 
             :key="user.id"
             >
