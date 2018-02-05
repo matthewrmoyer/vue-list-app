@@ -26,7 +26,35 @@
                 </div>
               </li>
           </ul>
-      </div>
+          <!-- Modal Trigger -->
+          <div class="fixed-action-btn">
+            <a class="waves-effect waves-light btn-floating btn-large money-blue darken-1 modal-trigger" href="#modal1">
+              <i class="large material-icons">add</i>
+            </a>
+          </div>
+          <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+            <h4>Add A Field and a Data Type</h4>
+            <div class="row">
+                <label for="new-item" class="left">New Item</label>
+                <input
+                    type="text" 
+                    name="newItem" 
+                    id="new-item"
+                    placeholder="Type the New Item Here"
+                    v-model="newItem"
+                >
+            </div>
+            {{ newItem }}
+            </div>
+            <div class="modal-footer">
+              <div  class="modal-action modal-close waves-effect waves-green btn-flat">
+                <i class="large material-icons right blue-check" @click="addItem({id : id, item: newItem}); resetNewItem()">check</i>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 </template>
 
@@ -36,13 +64,23 @@
       data() {
         return {
           title: 'SingleBoard',
-          id: this.$route.params.id
+          id: this.$route.params.id,
+          newItem: '',
         }
+      },
+      created() {
+        $(document).ready(() => {
+          $('.modal').modal()
+        })        
       },
       methods: {
         ...mapActions('singleBoard', [
-          'getBoard'
-        ])
+          'getBoard',
+          'addItem'
+        ]),
+        resetNewItem() {
+          this.newItem = ''
+        }
       },
       computed: {
         ...mapGetters('singleBoard', [
@@ -50,7 +88,11 @@
         ])
       },
       mounted() {
+        $('.modal').modal()
         this.getBoard(this.id)
+        $(document).ready(() => {
+          $('.modal').modal()
+        })
       }
     }
 </script>
