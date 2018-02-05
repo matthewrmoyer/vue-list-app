@@ -12,10 +12,13 @@ export const getBoard = async ({ commit }, payload) => {
 // payload = {id, item}
 export const addItem = async ({ commit }, payload) => {
   console.log('addItem action dispatched')
-  console.log(payload)
+  let item = {
+    board_id: payload.id,
+    value: payload.item.value
+  }
   try {
-    let board = await (await Vue.http.post(`https://vue-board-backend.herokuapp.com/boards/singleboard/${payload.id}`, payload.item)).json()
-    console.log(board)
+    await Vue.http.post('https://vue-board-backend.herokuapp.com/items/', item)
+    let board = await (await Vue.http.get(`https://vue-board-backend.herokuapp.com/boards/singleboard/${payload.id}`)).json()
     commit('setBoard', board)
   } catch (error) {
     console.log(error)
