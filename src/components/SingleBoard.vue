@@ -65,13 +65,13 @@
         return {
           title: 'SingleBoard',
           id: this.$route.params.id,
-          newItem: '',
+          newItem: ''
         }
       },
       created() {
         $(document).ready(() => {
           $('.modal').modal()
-        })        
+        })
       },
       methods: {
         ...mapActions('singleBoard', [

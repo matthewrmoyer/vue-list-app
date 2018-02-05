@@ -11,8 +11,8 @@ export const getBoard = async ({ commit }, payload) => {
 
 // payload = {id, item}
 export const addItem = async ({ commit }, payload) => {
-  console.log('addItem action dispatched');
-  console.log(payload);
+  console.log('addItem action dispatched')
+  console.log(payload)
   try {
     let board = await (await Vue.http.post(`https://vue-board-backend.herokuapp.com/boards/singleboard/${payload.id}`, payload.item)).json()
     console.log(board)
