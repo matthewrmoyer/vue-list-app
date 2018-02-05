@@ -43,14 +43,14 @@
                     name="newItem" 
                     id="new-item"
                     placeholder="Type the New Item Here"
-                    v-model="newItem"
+                    v-model="newItem.value"
                 >
             </div>
             {{ newItem }}
             </div>
             <div class="modal-footer">
               <div  class="modal-action modal-close waves-effect waves-green btn-flat">
-                <i class="large material-icons right blue-check" @click="addItem({id : id, item: newItem}); resetNewItem()">check</i>
+                <i class="large material-icons right blue-check" @click="addItem({id: id, item: newItem}); resetNewItem()">check</i>
               </div>
             </div>
           </div>
@@ -65,13 +65,15 @@
         return {
           title: 'SingleBoard',
           id: this.$route.params.id,
-          newItem: '',
+          newItem: {
+            value: ''
+          }
         }
       },
       created() {
         $(document).ready(() => {
           $('.modal').modal()
-        })        
+        })
       },
       methods: {
         ...mapActions('singleBoard', [
@@ -79,7 +81,7 @@
           'addItem'
         ]),
         resetNewItem() {
-          this.newItem = ''
+          this.newItem = {}
         }
       },
       computed: {
