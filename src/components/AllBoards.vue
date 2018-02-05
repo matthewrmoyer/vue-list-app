@@ -17,9 +17,9 @@
               >
               <router-link :to="`/singleBoard/${board.board.id}`">
                   <div class="col s12 m6">
-                    <div class="card money-blue darken-3">
-                      <div class="card-content white-text">
-                        <span class="card-title white-text">{{ board.board.name }}</span>
+                    <div class="card grey lighten-5">
+                      <span class="card-title black-text">{{ board.board.name }}</span>
+                      <div class="card-content money-blue darken-3 white-text">
                         <ul class = "card-items">
                           <li 
                             v-for="(item, index) in board.content" 
@@ -30,9 +30,9 @@
                           </li>
                         </ul>
                       </div>
-                      <div class="card-action">
-                        <a class="money-red-text text-lighten-1" href="#">This is a link</a>
-                        <a class="money-red-text text-lighten-1" href="#">This is a link</a>
+                      <div class="card-action money-red white-text">
+                        <a class="money-red white-text" href="#">This is a link</a>
+                        <a class="money-red white-text" href="#">This is a link</a>
                       </div>
                     </div>
                   </div>
@@ -84,6 +84,11 @@
     min-height: 200px;
     display: flex;
     flex-direction: column;
+  }
+
+  .card-title {
+    color: white;
+    line-height: 2;
   }
 
   .card-items {
