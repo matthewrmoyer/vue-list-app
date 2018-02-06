@@ -22,9 +22,9 @@
                       <input v-bind:class="{ complete: item.is_complete }" name="item.id" type="text" :value="item.value">
                   </div>
                   <span><i class="medium material-icons right delete" @click="deleteItem({item_id: item.id, board_id: id})">delete_forever</i></span>
-                  <span v-if="!item.is_complete"><i class="material-icons medium right blue-check">check_box_outline_blank</i></span>                  
-                  <span v-if="item.is_complete"><i class="material-icons medium right blue-check">check_box</i></span>
-                  <span class ="capitalize" v-if="item.completed_by">{{ item.completed_by }}</span>
+                  <span v-if="!item.is_complete"><i class="material-icons medium right blue-check" @click="toggleItemComplete({board_id: id, item_id: item.id, is_complete: !item.is_complete, user: user})">check_box_outline_blank</i></span>                  
+                  <span v-if="item.is_complete"><i class="material-icons medium right blue-check" @click="toggleItemComplete({board_id: id, item_id: item.id, is_complete: !item.is_complete, user: user})">check_box</i></span>
+                  <span class ="capitalize" v-if="item.completed_by && item.is_complete">{{ item.completed_by }}</span>
                 </div>
               </li>
           </ul>
@@ -50,8 +50,9 @@
             </div>
             </div>
             <div class="modal-footer">
-              <div  class="modal-action modal-close waves-effect waves-green btn-flat">
-                <i class="large material-icons right blue-check" @click="addItem({id: id, item: newItem}); resetNewItem()">check</i>
+              <div  class="modal-icon-container modal-action modal-close waves-effect waves-green btn-flat">
+                <i class="material-icons delete" @click="resetNewItem()">close</i>             
+                <i class="material-icons blue-check" @click="addItem({id: id, item: newItem}); resetNewItem()">check</i>
               </div>
             </div>
           </div>
@@ -81,7 +82,8 @@
         ...mapActions('singleBoard', [
           'getBoard',
           'addItem',
-          'deleteItem'
+          'deleteItem',
+          'toggleItemComplete'
         ]),
         resetNewItem() {
           this.newItem = {}
@@ -103,6 +105,7 @@
 </script>
 
 <style lang="scss" scoped>
+    $money-red: hsl(357, 77%, 69%);
     
     .component-container {
       display: flex;
@@ -151,7 +154,7 @@
             font-size: 30px !important;
             &.complete{
               text-decoration: line-through;
-              color: hsl(357, 77%, 69%);
+              color: $money-red
             }
           }
           label {
@@ -166,11 +169,21 @@
 
       .blue-check {
         color: hsl(185, 76%, 48%);
+        cursor: pointer;
       }
 
       .delete {
-        color: hsl(357, 77%, 69%);
+        color: $money-red;
         cursor: pointer;
+      }
+      .modal-icon-container {
+        display: flex;
+        justify-content: space-between;
+      }
+      .modal-footer {
+        i{
+          font-size: 3rem !important;
+        }
       }
       
 </style>
