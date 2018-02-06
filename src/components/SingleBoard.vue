@@ -21,7 +21,9 @@
                       <label :for="item.id" class="active left">Item {{ index + 1 }}</label>
                       <input v-bind:class="{ complete: item.is_complete }" name="item.id" type="text" :value="item.value">
                   </div>
-                  <span v-if="item.is_complete"><i class="material-icons right blue-check">check_circle</i></span>
+                  <span><i class="medium material-icons right delete" @click="deleteItem({item_id: item.id, board_id: id})">delete_forever</i></span>
+                  <span v-if="!item.is_complete"><i class="material-icons medium right blue-check">check_box_outline_blank</i></span>                  
+                  <span v-if="item.is_complete"><i class="material-icons medium right blue-check">check_box</i></span>
                   <span class ="capitalize" v-if="item.completed_by">{{ item.completed_by }}</span>
                 </div>
               </li>
@@ -46,7 +48,6 @@
                     v-model="newItem.value"
                 >
             </div>
-            {{ newItem }}
             </div>
             <div class="modal-footer">
               <div  class="modal-action modal-close waves-effect waves-green btn-flat">
@@ -65,6 +66,7 @@
         return {
           title: 'SingleBoard',
           id: this.$route.params.id,
+          user: 'Anonymous',
           newItem: {
             value: ''
           }
@@ -78,7 +80,8 @@
       methods: {
         ...mapActions('singleBoard', [
           'getBoard',
-          'addItem'
+          'addItem',
+          'deleteItem'
         ]),
         resetNewItem() {
           this.newItem = {}
@@ -163,6 +166,11 @@
 
       .blue-check {
         color: hsl(185, 76%, 48%);
+      }
+
+      .delete {
+        color: hsl(357, 77%, 69%);
+        cursor: pointer;
       }
       
 </style>

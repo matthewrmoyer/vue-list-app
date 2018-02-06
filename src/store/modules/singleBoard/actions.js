@@ -24,3 +24,14 @@ export const addItem = async ({ commit }, payload) => {
     console.log(error)
   }
 }
+
+export const deleteItem = async ({ commit }, payload) => {
+  try {
+    console.log(payload);
+    await Vue.http.delete(`https://vue-board-backend.herokuapp.com/items/${payload.item_id}`)
+    let board = await (await Vue.http.get(`https://vue-board-backend.herokuapp.com/boards/singleboard/${payload.board_id}`)).json()
+    commit('setBoard', board)
+  } catch (error) {
+    console.log(error)
+  }
+}
