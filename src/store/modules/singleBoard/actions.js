@@ -38,8 +38,7 @@ export const deleteItem = async ({ commit }, payload) => {
 export const toggleItemComplete = async ({ commit }, payload) => {
   console.log(payload)
   try {
-    // await setup vue put here
-    await Vue.http.put(`https://vue-board-backend.herokuapp.com/items/${payload.item_id}`, {"is_complete": payload.is_complete, "completed_by": payload.user})
+    await Vue.http.put(`https://vue-board-backend.herokuapp.com/items/${payload.item_id}`, {'is_complete': payload.is_complete, 'completed_by': payload.user})
     let board = await (await Vue.http.get(`https://vue-board-backend.herokuapp.com/boards/singleboard/${payload.board_id}`)).json()
     commit('setBoard', board)
   } catch (error) {
