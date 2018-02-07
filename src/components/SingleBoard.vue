@@ -120,6 +120,7 @@
 </script>
 
 <style lang="scss" scoped>
+
     $money-red: hsl(357, 77%, 69%);
     
     .component-container {
@@ -177,11 +178,12 @@
               text-transform: capitalize;
           }
       }
+
       .item-checkbox-container {
         display: flex;
         flex-direction: column;
-        // background: yellow;
       }
+
       .capitalize {
         text-transform: capitalize;
       }
@@ -195,6 +197,7 @@
         color: $money-red;
         cursor: pointer;
       }
+
       .custom-modal {
         height: 100vh;
         width: 100vw;
@@ -207,17 +210,19 @@
         top: 0;
         left: 0;
       }
+
       .modal-content {
         background: white;
         width: 70vw;        
       }
+
       .modal-icon-container {
         display: flex;
         justify-content: space-between;
         background: white;
         width: 70vw;
-        
       }
+
       .modal-footer {
         i{
           font-size: 3rem !important;
@@ -231,4 +236,5 @@
       .display-none {
         display: none !important;
       }
+
 </style>
