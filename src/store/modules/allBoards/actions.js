@@ -12,3 +12,13 @@ export const getBoards = async ({ commit }, payload) => {
   })
   commit('setBoardsData', fullBoards)
 }
+
+export const addBoard = async ({ commit }, payload) => {
+  console.log('addboard dispatchx')
+  console.log(payload)
+  // post to /boards
+  // use return object json to get the boards id
+  // get single board using id
+  // modify board to match dataset
+  // push board to state using push board mutation
+}
