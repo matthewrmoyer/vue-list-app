@@ -1,6 +1,6 @@
 <template>
     <div class="component-container">
-        <div v-bind:class="{ blur : showModal}" class = "container">
+        <div v-bind:class="{ blur : showModal}" v-if="board.board" class = "container">
           <h3 class ="capitalize">{{ board.board.name }} by {{ board.creator.name }}</h3>
           <ul class = "shared-user-list">
             <h5 class = "shared-user">Shared with</h5>
@@ -21,7 +21,7 @@
                       <label :for="item.id" class="active left">Item {{ index + 1 }}</label>
                       <input v-bind:class="{ complete: item.is_complete }" name="item.id" type="text" :value="item.value">
                   </div>
-                  <span><i class="medium material-icons right delete" @click="deleteItem({item_id: item.id, board_id: id})">delete_forever</i></span>
+                  <span><i class="medium material-icons right delete" @click="deleteItem({item_id: item.id, board_id: id}); hideItem()">delete_forever</i></span>
                   <span v-if="!item.is_complete"><i class="material-icons medium right blue-check" @click="toggleItemComplete({board_id: id, item_id: item.id, is_complete: !item.is_complete, user: user})">check_box_outline_blank</i></span>                  
                   <span v-if="item.is_complete"><i class="material-icons medium right blue-check" @click="toggleItemComplete({board_id: id, item_id: item.id, is_complete: !item.is_complete, user: user})">check_box</i></span>
                   <span class ="capitalize" v-if="item.completed_by && item.is_complete">{{ item.completed_by }}</span>
@@ -75,11 +75,6 @@
           showModal: false
         }
       },
-      created() {
-        $(document).ready(() => {
-          $('.modal').modal()
-        })
-      },
       methods: {
         ...mapActions('singleBoard', [
           'getBoard',
@@ -87,6 +82,14 @@
           'deleteItem',
           'toggleItemComplete'
         ]),
+        hideItem() {
+          if (event.target.parentNode.parentNode) {
+            let itemContainer = event.target.parentNode.parentNode
+            if (itemContainer.classList.contains('item-container')) {
+              itemContainer.classList.add('display-none')
+            }
+          }
+        },
         resetNewItem() {
           this.newItem = {}
         },
@@ -219,4 +222,7 @@
         filter: blur(5px);        
       }
       
+      .display-none {
+        display: none !important;
+      }
 </style>
