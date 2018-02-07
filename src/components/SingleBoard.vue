@@ -1,6 +1,6 @@
 <template>
     <div class="component-container">
-        <div>
+        <div v-bind:class="{ blur : showModal}" class = "container">
           <h3 class ="capitalize">{{ board.board.name }} by {{ board.creator.name }}</h3>
           <ul class = "shared-user-list">
             <h5 class = "shared-user">Shared with</h5>
@@ -28,14 +28,15 @@
                 </div>
               </li>
           </ul>
+          </div>
           <!-- Modal Trigger -->
           <div class="fixed-action-btn">
-            <a class="waves-effect waves-light btn-floating btn-large money-blue darken-1 modal-trigger" href="#modal1">
+            <button class="waves-effect waves-light btn-floating btn-large money-blue darken-1" @click="openModal">
               <i class="large material-icons">add</i>
-            </a>
+            </button>
           </div>
           <!-- Modal Structure -->
-          <div id="modal1" class="modal">
+          <div id="addItemModal" class="custom-modal" v-if="showModal" @click="hideModal()">
             <div class="modal-content">
             <h4>Add A Field and a Data Type</h4>
             <div class="row">
@@ -46,16 +47,16 @@
                     id="new-item"
                     placeholder="Type the New Item Here"
                     v-model="newItem.value"
+                    @keyup.enter="addItem({id: id, item: newItem}); resetNewItem(); closeModal()"
                 >
             </div>
             </div>
             <div class="modal-footer">
               <div  class="modal-icon-container modal-action modal-close waves-effect waves-green btn-flat">
-                <i class="material-icons delete" @click="resetNewItem()">close</i>             
-                <i class="material-icons blue-check" @click="addItem({id: id, item: newItem}); resetNewItem()">check</i>
+                <i class="material-icons delete" @click="resetNewItem(); closeModal()">close</i>             
+                <i class="material-icons blue-check" @click="addItem({id: id, item: newItem}); resetNewItem(); closeModal()">check</i>
               </div>
             </div>
-          </div>
         </div>
     </div>
 </template>
@@ -70,7 +71,8 @@
           user: 'Anonymous',
           newItem: {
             value: ''
-          }
+          },
+          showModal: false
         }
       },
       created() {
@@ -87,6 +89,18 @@
         ]),
         resetNewItem() {
           this.newItem = {}
+        },
+        openModal() {
+          this.showModal = true
+        },
+        closeModal() {
+          this.showModal = false
+        },
+        hideModal() {
+          if (event.target.id === 'addItemModal') {
+            this.closeModal()
+            this.resetNewItem()
+          }
         }
       },
       computed: {
@@ -95,11 +109,7 @@
         ])
       },
       mounted() {
-        $('.modal').modal()
         this.getBoard(this.id)
-        $(document).ready(() => {
-          $('.modal').modal()
-        })
       }
     }
 </script>
@@ -176,14 +186,37 @@
         color: $money-red;
         cursor: pointer;
       }
+      .custom-modal {
+        height: 100vh;
+        width: 100vw;
+        background: rgba(211, 211, 211, 0.591);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      .modal-content {
+        background: white;
+        width: 70vw;        
+      }
       .modal-icon-container {
         display: flex;
         justify-content: space-between;
+        background: white;
+        width: 70vw;
+        
       }
       .modal-footer {
         i{
           font-size: 3rem !important;
         }
+      }
+
+      .blur {
+        filter: blur(5px);        
       }
       
 </style>
