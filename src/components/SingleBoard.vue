@@ -38,7 +38,7 @@
           <!-- Modal Structure -->
           <div id="addItemModal" class="custom-modal" v-if="showModal" @click="hideModal()">
             <div class="modal-content">
-            <h4>Add A Field and a Data Type</h4>
+            <h4>Add A New Item</h4>
             <div class="row">
                 <label for="new-item" class="left">New Item</label>
                 <input
