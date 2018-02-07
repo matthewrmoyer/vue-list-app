@@ -19,12 +19,14 @@
                 <div class="item-container">
                   <div class="row item">
                       <label :for="item.id" class="active left">Item {{ index + 1 }}</label>
-                      <input v-bind:class="{ complete: item.is_complete }" name="item.id" type="text" :value="item.value">
+                      <input v-bind:class="{ complete: item.is_complete }" class="item-input" name="item.id" type="text" :value="item.value">
                   </div>
-                  <span><i class="medium material-icons right delete" @click="deleteItem({item_id: item.id, board_id: id}); hideItem()">delete_forever</i></span>
-                  <span v-if="!item.is_complete"><i class="material-icons medium right blue-check" @click="toggleItemComplete({board_id: id, item_id: item.id, is_complete: !item.is_complete, user: user})">check_box_outline_blank</i></span>                  
-                  <span v-if="item.is_complete"><i class="material-icons medium right blue-check" @click="toggleItemComplete({board_id: id, item_id: item.id, is_complete: !item.is_complete, user: user})">check_box</i></span>
-                  <span class ="capitalize" v-if="item.completed_by && item.is_complete">{{ item.completed_by }}</span>
+                    <span><i class="medium material-icons right delete" @click="deleteItem({item_id: item.id, board_id: id}); hideItem()">delete_forever</i></span>
+                  <div class="item-checkbox-container">
+                    <span v-if="!item.is_complete"><i class="material-icons medium right blue-check" @click="toggleItemComplete({board_id: id, item_id: item.id, is_complete: !item.is_complete, user: user})">check_box_outline_blank</i></span>                  
+                    <span v-if="item.is_complete"><i class="material-icons medium right blue-check" @click="toggleItemComplete({board_id: id, item_id: item.id, is_complete: !item.is_complete, user: user})">check_box</i></span>
+                    <span class ="capitalize" v-if="item.completed_by && item.is_complete">{{ item.completed_by }}</span>
+                  </div>
                 </div>
               </li>
           </ul>
@@ -175,7 +177,11 @@
               text-transform: capitalize;
           }
       }
-
+      .item-checkbox-container {
+        display: flex;
+        flex-direction: column;
+        // background: yellow;
+      }
       .capitalize {
         text-transform: capitalize;
       }
