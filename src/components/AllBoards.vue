@@ -41,6 +41,33 @@
           </transition-group>
         </ul>
       </div>
+      <div class="fixed-action-btn">
+        <button class="waves-effect waves-light btn-floating btn-large money-blue darken-1" @click="openModal">
+          <i class="large material-icons">add</i>
+        </button>
+      </div>
+          <div id="addBoardModal" class="custom-modal" v-if="showModal" @click="hideModal()">
+            <div class="modal-content">
+            <h4>Add A New Item</h4>
+            <div class="row">
+                <label for="new-item" class="left">New Item</label>
+                <input
+                    type="text" 
+                    name="newBoard" 
+                    id="new-item"
+                    placeholder="Type the New Item Here"
+                    v-model="newBoard.title"
+                    @keyup.enter="addBoard({name: newBoard.title, creator: userId}); resetNewBoard(); closeModal()"
+                >
+            </div>
+            </div>
+            <div class="modal-footer">
+              <div  class="modal-icon-container modal-action modal-close waves-effect waves-green btn-flat">
+                <i class="material-icons delete" @click="resetNewBoard(); closeModal()">close</i>             
+                <i class="material-icons blue-check" @click="addBoard({name: newBoard.title, creator: user.id}); resetNewBoard(); closeModal()">check</i>
+              </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -51,7 +78,15 @@
       data() {
         return {
           title: 'All Boards',
-          show: true
+          show: true,
+          showModal: false,
+          user: {
+            name: 'Anonymous',
+            id: '1'
+          },
+          newBoard: {
+            name: ''
+          }
         }
       },
       computed: {
@@ -61,7 +96,8 @@
       },
       methods: {
         ...mapActions('allBoards', [
-          'getBoards'
+          'getBoards',
+          'addBoard'
         ]),
         beforeEnter(el) {
           el.style.opacity = 0
@@ -71,6 +107,29 @@
           setTimeout(function() {
             $(el).animate({ opacity: 1 }, 300, done)
           }, delay)
+        },
+        hideItem() {
+          if (event.target.parentNode.parentNode) {
+            let itemContainer = event.target.parentNode.parentNode
+            if (itemContainer.classList.contains('item-container')) {
+              itemContainer.classList.add('display-none')
+            }
+          }
+        },
+        resetNewBoard() {
+          this.newBoard = {}
+        },
+        openModal() {
+          this.showModal = true
+        },
+        closeModal() {
+          this.showModal = false
+        },
+        hideModal() {
+          if (event.target.id === 'addBoardModal') {
+            this.closeModal()
+            this.resetNewBoard()
+          }
         }
       },
       mounted() {
@@ -94,5 +153,44 @@
   .card-items {
     margin: auto;
   }
+
+      .custom-modal {
+        height: 100vh;
+        width: 100vw;
+        background: rgba(211, 211, 211, 0.591);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      .modal-content {
+        background: white;
+        width: 70vw;        
+      }
+
+      .modal-icon-container {
+        display: flex;
+        justify-content: space-between;
+        background: white;
+        width: 70vw;
+      }
+
+      .modal-footer {
+        i{
+          font-size: 3rem !important;
+        }
+      }
+
+      .blur {
+        filter: blur(5px);        
+      }
+      
+      .display-none {
+        display: none !important;
+      }
 
 </style>

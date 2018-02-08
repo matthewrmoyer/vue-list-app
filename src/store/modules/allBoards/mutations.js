@@ -5,3 +5,7 @@ export const setBoardsData = (state, payload) => {
     }
   })
 }
+
+export const pushBoard = (state, payload) => {
+  state.boards.push(payload)
+}
