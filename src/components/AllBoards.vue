@@ -57,14 +57,14 @@
                     id="new-item"
                     placeholder="Type the New Item Here"
                     v-model="newBoard.title"
-                    @keyup.enter="addBoard({name: newBoard.title, creator: user}); resetNewBoard(); closeModal()"
+                    @keyup.enter="addBoard({name: newBoard.title, creator: userId}); resetNewBoard(); closeModal()"
                 >
             </div>
             </div>
             <div class="modal-footer">
               <div  class="modal-icon-container modal-action modal-close waves-effect waves-green btn-flat">
                 <i class="material-icons delete" @click="resetNewBoard(); closeModal()">close</i>             
-                <i class="material-icons blue-check" @click="addBoard({name: newBoard.title, creator: user}); resetNewBoard(); closeModal()">check</i>
+                <i class="material-icons blue-check" @click="addBoard({name: newBoard.title, creator: user.id}); resetNewBoard(); closeModal()">check</i>
               </div>
             </div>
         </div>
@@ -80,7 +80,10 @@
           title: 'All Boards',
           show: true,
           showModal: false,
-          user: 'Anonymous',
+          user: {
+            name: 'Anonymous',
+            id: '1'
+          },
           newBoard: {
             name: ''
           }
