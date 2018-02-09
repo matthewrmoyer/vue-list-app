@@ -48,14 +48,14 @@
       </div>
           <div id="addBoardModal" class="custom-modal" v-if="showModal" @click="hideModal()">
             <div class="modal-content">
-            <h4>Add A New Item</h4>
+            <h4>Create a New Board</h4>
             <div class="row">
-                <label for="new-item" class="left">New Item</label>
+                <label for="new-item" class="left">New Board Name</label>
                 <input
                     type="text" 
                     name="newBoard" 
                     id="new-item"
-                    placeholder="Type the New Item Here"
+                    placeholder="Type the New Board Name Here"
                     v-model="newBoard.title"
                     @keyup.enter="addBoard({name: newBoard.title, creator: userId}); resetNewBoard(); closeModal()"
                 >
