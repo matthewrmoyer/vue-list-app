@@ -1,8 +1,11 @@
 <template>
     <div class="component-container">
         <div v-bind:class="{ blur : showModal}" v-if="board.board" class = "container">
-          <h3 class ="capitalize">{{ board.board.name }} by {{ board.creator.name }}</h3>
-          <ul class = "shared-user-list">
+          <h3 class ="capitalize">
+            {{ board.board.name }} 
+            <!-- by {{ board.creator.name }} -->
+            </h3>
+          <!-- <ul class = "shared-user-list">
             <h5 class = "shared-user">Shared with</h5>
             <li 
             v-if="board.users"
@@ -13,7 +16,7 @@
             <h5 class = "shared-user shared-user-comma" v-if="index!==board.users.length-1 &&board.users.length > 2">, </h5>
             <h5 class = "shared-user shared-user-comma" v-if="index===board.users.length-2"> and </h5>            
           </li>
-          </ul>
+          </ul> -->
           <ul class="fields">
               <li v-for="(item, index) in board.content" :key="item.id">
                 <div class="item-container">
