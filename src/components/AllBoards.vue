@@ -1,6 +1,13 @@
 <template>
     <div>
       <h1>{{ title }}</h1>
+      <div  v-if="boards.length<1">
+        <h3>Loading Boards...</h3>
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+        
        <div class="row">
         <ul>
           <transition-group 
